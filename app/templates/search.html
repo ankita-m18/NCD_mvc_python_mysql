@@ -25,9 +25,7 @@
   <header>
     <h1>Search Patient Details</h1>
 </header>
-<p style="color:red;">
-  {{error}}
-</p>
+
   <form name="search" method="POST" action="/search">
   <div class="input-group mb-3">
     
@@ -41,6 +39,9 @@
     <button class="btn btn-outline-success" type="submit">Search</button>  
   </div>
 </form>
+<div class="user_box error" style="text-align:center;border:0px;color:red;">
+  {{error}}
+</div>
 <div class="user_box error" style="text-align:center;display:'{{ error_display_patient_id }}';border:0px;color:red;">
   {{ error_patient_id }}
 </div>

@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect
 from app import app
 from flask_mysqldb import MySQL 
 import MySQLdb.cursors
+import re
 #from bs4 import BeautifulSoup
 
 from random import randint
@@ -19,7 +20,6 @@ mysql = MySQL(app)
 def final_touch(field):
     field = field.strip()
     field = field.replace("\\", "")
-
     #field = BeautifulSoup(field, convertEntities=BeautifulSoup.HTML_ENTITIES)
     return field 
 
@@ -51,11 +51,12 @@ def search():
                     return render_template('search.html',error_display_patient_id="block",
                         error_patient_id="Error: Patient ID doesn't start with a SPACE")
                 
-                elif(len(pk)>14):
+                if(len(pk)>14):
                     return render_template('search.html',error_display_patient_id="block",
                     error_patient_id="Error: Patient ID must be less than 14 digits")
 
                 else:
+                    pk = final_touch(pk)
                     if pk.isdigit():
                         cursor.execute("SELECT * from patient WHERE patient_id LIKE '%"+pk+"%' ;")
                         records=cursor.fetchall()
@@ -73,7 +74,8 @@ def search():
                     return render_template('search.html',error_display_firstname="block",
                         error_firstname="Error: First Name doesn't start with a SPACE")
                 else:
-                    if (('^[a-zA-Z\s]+$', pk)):
+                    pk = final_touch(pk)
+                    if (re.match('^[a-zA-Z\s]+$', pk)):
                         cursor.execute("SELECT * from patient WHERE first_name LIKE '%"+pk+"%' ;")
                         records=cursor.fetchall()
                         cursor.close()
@@ -91,7 +93,8 @@ def search():
                     return render_template('search.html',error_display_lastname="block",
                         error_lastname="Error: Last Name doesn't start with a SPACE")
                 else:
-                    if pk.isalpha():
+                    pk = final_touch(pk)
+                    if (re.match('^[a-zA-Z\s]+$', pk)):
                         cursor.execute("SELECT * from patient WHERE last_name LIKE '%"+pk+"%' ;")
                         records=cursor.fetchall()
                         cursor.close()
