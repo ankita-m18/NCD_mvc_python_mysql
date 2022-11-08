@@ -36,13 +36,22 @@
       <option><a class="dropdown-item" value="firstname">FIRST NAME</a></option>
       <option><a class="dropdown-item" value="lastname">LAST NAME</a></option>
     </select>
-    <input name="primary_key" type="text" class="form-control" aria-label="Sizing example input"
+    <input name="pk" type="text" class="form-control" aria-label="Sizing example input"
       aria-describedby="inputGroup-sizing-default">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-   
+    <button class="btn btn-outline-success" type="submit">Search</button>  
   </div>
 </form>
+<div class="user_box error" style="text-align:center;display:'{{ error_display_patient_id }}';border:0px;color:red;">
+  {{ error_patient_id }}
+</div>
 
+<div class="user_box error" style="text-align:center;display:'{{ error_display_firstname }}';border:0px;color:red;">
+  {{ error_firstname }}
+</div>
+<div class="user_box error" style="text-align:center;display:'{{ error_display_lastname }}';border:0px;color:red;">
+  {{ error_lastname }}
+</div> 
+<hr>
 <table class="table">
   <thead class="table-dark">
     <tr>

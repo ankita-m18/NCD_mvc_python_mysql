@@ -3,7 +3,6 @@ from app import app
 from flask import render_template, request
 
 
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -20,8 +19,6 @@ def about():
 def contacts():
     return render_template('contacts.html')
 
-
-
 @app.route('/registration')
 def registration():
     return render_template('registration.html')
@@ -29,10 +26,7 @@ def registration():
 @app.route('/searchpage')
 def searchpage():
     return render_template('search.html')
-
-
     
-
 @app.route('/fail')
 def fail():
     str="Please answer all the questions."
@@ -43,6 +37,17 @@ def fail():
 def back():
     if request.method=='POST':
         return render_template('registration.html')
+
+#Invalid URL
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+#Internal Server Error
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template('404.html'), 500
+
 
 '''@app.route('/question',methods=['POST','GET'])
 def question():
