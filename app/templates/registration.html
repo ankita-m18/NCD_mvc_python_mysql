@@ -69,61 +69,95 @@
 <body>
     <form name="register" method="POST" action="/register">
         <div class="container">
-			<div class="heading">
-				<center>
-				<h1 align="center">Patient Registration</h1>
-				</center>
-			</div>
+            <div class="heading">
+                <center>
+                    <h1 align="center">Patient Registration</h1>
+                </center>
+            </div>
+            <div class="user_box error" style="text-align:center;display:'{{ error_display_head }}';color:red;">
+                {{ error_head }}
+            </div>
+            <hr>
 
-			<hr>
-			<label> Firstname </label> 
-				<input type="text" name="firstname" placeholder="Firstname" title="Enter First Name, only alphabets" pattern="^[A-Za-z\s\.]*$"  required />
-			<label> Lastname: </label> 
-			<input type="text" name="lastname" placeholder="Lastname" size="15" title="Enter Last Name, only alphabets" pattern="^[A-Za-z\s\.]*$"  required />
-			<div>
-				<label> Gender : </label><br> <input type="radio" value="Male"
-					name="gender" required> Male <input type="radio"
-					value="Female" name="gender"> Female <input type="radio"
-					value="Other" name="gender"> Other
+            <label> Firstname </label>
+            <input type="text" name="firstname" placeholder="Firstname" title="Enter First Name, only alphabets"
+                pattern="^[A-Za-z\s]{1,100}$" required />
+            <div class="user_box error"
+                style="text-align:center;display:'{ {error_display_firstname }}';border:0px;color:red;">
+                {{ error_firstname }}
+            </div>
 
-			</div>
-			
-			<div>
-			<label>   
-				Aadhaar UID :  
-			</label>  
+            <label> Lastname: </label>
+            <input type="text" name="lastname" placeholder="Lastname" title="Enter Last Name, only alphabets"
+                pattern="^[A-Za-z\s]{1,100}$" required />
+            <div class="user_box error"
+                style="text-align:center;display:'{{ error_display_lastname }}';border:0px;color:red;">
+                {{ error_lastname }}
+            </div>
 
-            <br>
-            <p style="color:red;">
+            <div>
+                <label> Gender : </label><br> <input type="radio" value="Male" name="gender" required> Male <input
+                    type="radio" value="Female" name="gender"> Female <input type="radio" value="Other" name="gender">
+                Other
+                <div class="user_box error"
+                    style="text-align:center;display:'{{ error_display_gender }}';border:0px;color:red;">
+                    {{ error_gender }}
+                </div>
+            </div>
 
-                {{error}}
-            </p>
-				 
-			<input type="text" name="aadhaar" placeholder="Aadhar UID" size="12" pattern="[1-9]{1}[0-9]{11}" 
-			     title="12 digit Aadhaar No."    required >   
-			</div>
-			
-			<div>
-			<label>   
-				Phone :  
-			</label>  
-				<input type="text" name="country code" placeholder="Country Code"  value="+91" size="2" >   
-			<input type="text" name="phone" placeholder="phone no." size="10" pattern="[1-9]{1}[0-9]{9}" 
-			     title="Ten digit phone number"required>   
-			</div>
-			<div>
-				<label> Date of Birth : </label> <input type="date" placeholder="dd-mm-yyyy" id="birthday"
-					name="birthday" max="3000-01-01" onfocus="this.max=new Date().toISOString().split('T')[0]" required>
-			</div>
-			<div>
-				<label> Pincode : </label> <input type="text" id="pincode"
-					name="pincode" pattern="[1-9]{1}[0-9]{5}" title="Six digit pincode"
-					required>
-			</div>
+            <div>
+                <label>
+                    Aadhaar UID :
+                </label>
 
-			<button type="submit" class="registerbtn">Register</button>
-            <button class="btn btn-outline-success" onclick="location.href='/index'" style="text-align:center">Home</button>
-		</div>
+                <br>
+                <p style="color:red;">
+                    {{ error }}
+                </p>
+
+                <input type="text" name="aadhaar" placeholder="Aadhar UID" size="12" pattern="[1-9]{1}[0-9]{11}"
+                    title="12 digit Aadhaar No." required>
+                <div class="user_box error"
+                    style="text-align:center;display:'{{ error_display_aadhaar }}';border:0px;color:red;">
+                    {{ error_aadhaar }}
+                </div>
+
+            </div>
+
+            <div>
+                <label>
+                    Phone :
+                </label>
+                <input type="text" name="country code" placeholder="Country Code" value="+91" size="2">
+                <input type="text" name="phone" placeholder="phone no." size="10" pattern="[1-9]{1}[0-9]{9}"
+                    title="Ten digit phone number" required>
+                <div class="user_box error"
+                    style="text-align:center;display:'{{ error_display_phone }}';border:0px;color:red;">
+                    {{ error_phone }}
+                </div>
+
+            </div>
+            <div>
+                <label> Date of Birth : </label> <input type="date" placeholder="mm-dd-yyyy" id="birthday"
+                    name="birthday" min="1900-01-01" max="1992-12-31" onfocus="this.max='1992-12-31'" required>
+                <div class="user_box error"
+                    style="text-align:center;display:'{{ error_display_dob }}';border:0px;color:red;">
+                    {{ error_dob }}
+                </div>
+            </div>
+            <div>
+                <label> Pincode : </label> <input type="text" id="pincode" name="pincode" pattern="[1-9]{1}[0-9]{5}"
+                    title="Six digit pincode" required>
+                <div class="user_box error"
+                    style="text-align:center;display:'{{ error_display_pincode }}';border:0px;color:red;">
+                    {{ error_pincode }}
+                </div>
+            </div>
+
+            <button type="submit" class="registerbtn">Register</button>
+            <button class="btn btn-outline-success" onclick="location.href='/index'"
+                style="text-align:center">Home</button>
+        </div>
     </form>
 </body>
 
