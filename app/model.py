@@ -36,8 +36,6 @@ def search():
         choice=request.form['choice']
         
         pk=request.form['pk']
-        
-        
 
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 
@@ -103,6 +101,14 @@ def search():
 
     return render_template('search.html', records=records)
 
+@app.route('/alldata',methods=['GET', 'POST'])
+def alldata():
+    if request.method=="POST":
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * from patient;")
+        records=cursor.fetchall()
+        cursor.close()
+    return render_template('search.html', records=records)
 
 def making_global_aadhaar(aadh):
     global aadhaar
