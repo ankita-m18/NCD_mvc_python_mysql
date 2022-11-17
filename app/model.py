@@ -61,7 +61,7 @@ def search():
                         cursor.close()
                     else :
                         return render_template('search.html',error="Enter digits only") 
-        elif choice=='FIRST NAME':
+        elif choice=='C':
             pk.capitalize()
             if(not pk): 
                 return render_template('search.html',error_display_firstname="block",
@@ -122,8 +122,8 @@ def making_global_patient(patientid):
 def register():
 
 
-    error_name=error_username=error_password=error_gender =error_dob=error_head=""
-    error_display_name=error_display_username=error_display_password=error_display_gender =error_display_dob=error_display_head="none"
+    error_firstname=error_lastname=error_gender=error_aadhaar=error_phone=error_dob=error_pincode=error_head=""
+    error_display_firstname=error_display_lastname=error_display_gender=error_display_aadhaar =error_display_phone=error_display_pincode=error_display_dob=error_display_head="none"
     flag_error=0
     if request.method=="POST":
 
@@ -239,7 +239,7 @@ def register():
 
 
         if(flag_error==0):
-            error_display_name=error_display_username=error_display_password=error_display_gender =error_display_dob=error_display_head="none"
+            error_display_firstname=error_display_lastname=error_display_gender=error_display_aadhaar =error_display_phone=error_display_pincode=error_display_dob=error_display_head="none"
         if(flag_error==1):
             return render_template('registration.html',error_display_head="block",
                     error_head="There are one or more errors in your form. Correct them and register again !",

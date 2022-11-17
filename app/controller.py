@@ -26,6 +26,11 @@ def registration():
 @app.route('/searchpage')
 def searchpage():
     return render_template('search.html')
+
+@app.route('/hidedata')
+def hidedata():
+    return render_template('search.html')
+
     
 @app.route('/fail')
 def fail():
