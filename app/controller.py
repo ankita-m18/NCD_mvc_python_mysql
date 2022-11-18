@@ -4,12 +4,13 @@ from flask import render_template, request
 
 
 @app.route('/')
-def home():
+def login():
     return render_template('index.html')
 
-@app.route('/index')
+
+@app.route('/home')
 def index():
-    return render_template('index.html')
+    return render_template('home.html')
 
 @app.route('/about')
 def about():

@@ -6,19 +6,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - NCD</title>
     <link rel="stylesheet" href="C:\Users\ankita.mahato\Documents\NCD_python_mysql123\static\css\mystyle.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Raleway:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link href="{{ url_for('static', filename='css/mystyle.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/loginstyle.css')}}" rel="stylesheet">
+    <script>
+        
+        // Get the modal
+        /*var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Get the modal and modal1
+        var modal1 = document.getElementById('id02');
+
+        // When the user clicks anywhere outside of the modal1, close it
+        window.onclick = function (event) {
+            if (event.target == modal1) {
+                modal1.style.display = "none";
+            }*/
+
+        function open_close()
+        {
+            document.getElementById('id01').style.display = "none";
+            document.getElementById('id02').style.display = "block";    
+        }
+
+        function close_open()
+        {
+            document.getElementById('id01').style.display = "block";
+            document.getElementById('id02').style.display = "none";    
+        }
+    </script>
+    <style>
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        .modal1 {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* The Close Button (x) */
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid rgb(7, 7, 52);
+        }
+
+        .button1:hover {
+            background-color: rgb(7, 7, 52);
+            color: white;
+        }
+    </style>
+
 </head>
-<link href="{{ url_for('static', filename='css/mystyle.css')}}" rel="stylesheet">
+
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
-        <div class="container"><a class="navbar-KARKINOS d-flex align-items-center" href="/"><span><h1><b>NCD</b></h1></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-NCD d-flex align-items-center" href="/"><span>
+                    <h1><b>NCD</b></h1>
+                </span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link active" href="/index">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="/contacts">Contacts</a></li>
-                </ul><button class="btn btn-primary shadow" onclick="location.href='/registration'" type="button">Register Now</button>
+                </ul>
             </div>
         </div>
     </nav>
@@ -28,34 +140,201 @@
                 <div class="col-md-8 text-center text-md-start mx-auto">
                     <div class="text-center">
                         <h1 class="display-4 fw-bold mb-5">NCD RISK ASSESSMENT CHECKLIST</h1>
-                        <h4 class="fw-bold mb-5">WE ARE HERE TO REDUCE THE BURDEN OF&nbsp;<span class="underline">CANCER</span>.</h4>
-                        <p class="fs-5 text-muted mb-5">Earlier we detect, the more your happiness in living a healthy life!</p>
-                        <form class="d-flex justify-content-center flex-wrap" method="post">
-                            
-                            <div class="shadow-lg mb-3"><button class="btn btn-primary shadow" onclick="location.href='/searchpage'" type="button">Search for Patient </button></div>
-                        </form>
+                        <h4 class="fw-bold mb-5">WE ARE HERE TO REDUCE THE BURDEN OF&nbsp;<span
+                                class="underline">CANCER</span>.</h4>
+                        <p class="fs-5 text-muted mb-5">Earlier we detect, the more your happiness in living a healthy
+                            life!</p>
+                        <div class="d-flex justify-content-center flex-wrap">
+                            <div class="shadow-lg mb-3"><button class="btn btn-primary shadow"
+                                    onclick="document.getElementById('id01').style.display='block'"
+                                    style="width:auto;">Login </button></div>
+                        </div>
+                        
+                        <!--login-->
+                        <div id="id01" class="modal">
+                            <form name="login" method="post" action="/login">
+                                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                                    title="Close Modal">&times;</span>
+                                <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+                                    <div class="card card0 border-0">
+                                        <div class="row d-flex">
+                                            <div class="col-lg-6">
+                                                <div class="card1 pb-5">
+                                                    <div class="row">
+                                                        <img src="{{ url_for('static', filename='img/logo.png')}}"
+                                                            class="logo">
+                                                    </div>
+                                                    <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
+                                                        <img src="{{ url_for('static', filename='img/medical.jpg')}}"
+                                                            class="image">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="card2 card border-0 px-4 py-5">
+                                                    <div class="row px-3 mb-4">
+                                                        <div class="line"></div>
+                                                        <large class="or text-center">Sign in</large>
+                                                        <div class="line"></div>
+                                                    </div>
+                                                    <div class="row px-3">
+                                                        <label class="mb-1">
+                                                            <h6 class="mb-0 text-sm"><b>Email Address</b></h6>
+                                                        </label>
+                                                        <input class="mb-4" type="text" name="email"
+                                                            placeholder="Enter a valid email address">
+                                                    </div>
+                                                    <div class="row px-3">
+                                                        <label class="mb-1">
+                                                            <h6 class="mb-0 text-sm"><b>Password</b></h6>
+                                                        </label>
+                                                        <input type="password" name="password"
+                                                            placeholder="Enter password">
+                                                    </div>
+                                                    <div class="row px-3 mb-4">
+
+                                                        <a href="#" class="ml-auto mb-0 text-sm">Forgot Password?</a>
+                                                    </div>
+                                                    <div class="row mb-3 px-3">
+                                                        <button type="submit" class="btn button1 text-center">Login</button>
+                                                    </div>
+                                                    
+                                                    <div class="row mb-3 px-3">
+                                                    <button type="button"
+                                                        onclick="document.getElementById('id01').style.display='none'"
+                                                        class="btn button1 text-center">Cancel</button>
+                                                    </div>
+                                                    <div class="row mb-4 px-3">
+                                                        <small class="font-weight-bold">Don't have an account? <a
+                                                                class="text-danger"
+                                                                onclick="open_close()">Signup</a></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-blue py-4">
+                                            <div class="row px-3">
+                                                <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2022. NCD
+                                                    </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <!--login close-->
+
+                        <!--Signup-->
+                        <div id="id02" class="modal1">
+                            <form name="signup" method="post" action="/signup">
+                                <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+                                    <div class="card card0 border-0">
+                                        <div class="row d-flex">
+                                            <div class="col-lg-6">
+                                                <div class="card1 pb-5">
+                                                    <div class="row">
+                                                        <img src="{{ url_for('static', filename='img/logo.png')}}"
+                                                            class="logo">
+                                                    </div>
+                                                    <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
+                                                        <img src="{{ url_for('static', filename='img/medical.jpg')}}"
+                                                            class="image">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="card2 card border-0 px-4 py-5">
+                                                    <div class="row px-3 mb-4">
+                                                        <div class="line"></div>
+                                                        <large class="or text-center">Sign up</large>
+                                                        <div class="line"></div>
+                                                    </div>
+                                                    <div class="row px-3">
+                                                        <label class="mb-1">
+                                                            <h6 class="mb-0 text-sm"><b>Full Name </b> </h6>
+                                                        </label>
+                                                        <input class="mb-4" type="text" name="fullname"
+                                                            placeholder="Enter full name" pattern="^[A-Za-z\s]{1,100}$" required />
+                                                    </div>
+                                                    <div class="row px-3">
+                                                        <label class="mb-1">
+                                                            <h6 class="mb-0 text-sm"><b>Email Address </b></h6>
+                                                        </label>
+                                                        <input class="mb-4" type="text" name="email"
+                                                            placeholder="Enter a valid email address" required/>
+                                                    </div>
+                                                    <div class="row px-3">
+                                                        <label class="mb-1">
+                                                            <h6 class="mb-0 text-sm"><b>Password</b></h6>
+                                                        </label>
+                                                        <input type="password" name="password"
+                                                            placeholder="Enter password" required/>
+                                                    </div>
+                                                    <div class="row px-3">
+                                                        <label class="mb-1">
+                                                            <h6 class="mb-0 text-sm"><b>Repeat Password</b></h6>
+                                                        </label>
+                                                        <input type="password" name="repeatpassword"
+                                                            placeholder="Enter repeat password" required/>
+                                                    </div>
+                                                    <hr>
+                    
+                                                    <div class="row mb-3 px-3">
+                                                        <button type="submit" class="btn button1 text-center">Login</button>
+                                                    </div>
+                                                    
+                                                    <div class="row mb-3 px-3">
+                                                    <button type="button"
+                                                        onclick="document.getElementById('id02').style.display='none'"
+                                                        class="btn button1 text-center">Cancel</button>
+                                                    </div>
+                                                    <div class="row mb-4 px-3">
+                                                        <small class="font-weight-bold">Already have an account? <a
+                                                                class="text-danger"
+                                                                onclick="close_open()">Signin</a></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-blue py-4">
+                                            <div class="row px-3">
+                                                <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2022. NCD
+                                                   </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <!--signup close-->
+
+
                     </div>
                 </div>
                 <div class="col-12 col-lg-10 mx-auto">
-                    <div class="text-center position-relative"><img class="img-fluid" src="{{ url_for('static', filename='img/medical.jpg')}}" style="width: 800px;"></div>
+                    <div class="text-center position-relative"><img class="img-fluid"
+                            src="{{ url_for('static', filename='img/medical.jpg')}}" style="width: 800px;"></div>
                 </div>
             </div>
         </div>
     </header>
-    
+
     <footer>
         <div class="container py-4 py-lg-5">
             <div class="row row-cols-2 row-cols-md-4">
                 <div class="col-12 col-md-3">
-                    <div class="fw-bold d-flex align-items-center mb-2"><span>KARKINOS</span></div>
-                    <p class="text-muted">Address: Survey No. 58, 7, Dr.Puneeth Rajkumar Rd, Devarabisanahalli, Bellandur, Bengaluru, Karnataka 560103. Phone: 082682 82682</p>
+                    <div class="fw-bold d-flex align-items-center mb-2"><span>NCD</span></div>
+                    <p class="text-muted">Address: Survey No. 58, 7, Dr.Puneeth Rajkumar Rd, Devarabisanahalli,
+                        Bellandur, Bengaluru, Karnataka 560103. Phone: 082682 82682</p>
                 </div>
-                
+
             </div>
             <hr>
             <div class="text-muted d-flex justify-content-between align-items-center pt-3">
-                <p class="mb-0">Copyright © 2022 KARKINOS</p>
-                
+                <p class="mb-0">Copyright © 2022 NCD</p>
+
             </div>
         </div>
     </footer>

@@ -3,7 +3,9 @@ from app import app
 from flask_mysqldb import MySQL 
 import MySQLdb.cursors
 import re
+from werkzeug.security import generate_password_hash, check_password_hash
 #from bs4 import BeautifulSoup
+
 
 from random import randint
   
@@ -23,6 +25,121 @@ def final_touch(field):
     #field = BeautifulSoup(field, convertEntities=BeautifulSoup.HTML_ENTITIES)
     return field 
 
+@property
+def password(self):
+    raise AssertionError("Password is not a readable attribute!")
+
+@password.setter
+def password(self,password):
+    password_hash=""
+    self.password_hash=generate_password_hash(password)
+    return password_hash
+
+def verify_password(self,password):
+    return check_password_hash(password_hash)
+
+@app.route('/signup',methods=['GET', 'POST'])
+def signup():
+        
+        error_fullname=error_email=error_password=""
+        error_display_fullname=error_display_email=error_display_password="none"
+        flag_error=0
+        encrpt_pw=""
+
+        if request.method=="POST":
+            
+
+            fullname=""
+            email=""
+            password=""
+            repeatpw=""
+
+            msg = " "
+            
+            fullname=request.form['fullname']
+            fullname.capitalize()
+            email=request.form['email']
+            email.lower()
+            password=request.form['password']
+            repeatpw=request.form['repeatpassword']
+            
+            
+            if(not fullname): 
+                flag_error=1
+                return render_template('index.html',error_display_fullname="block",
+                        error_fullname="Error: Full Name is required")
+            else:
+                fullname = final_touch(fullname)
+                if(fullname.isspace()):
+                    flag_error=1
+                    return render_template('index.html',error_display_fullname="block",
+                            error_fullname="Error: Full Name can't start with a SPACE")
+
+            if(not email): 
+                flag_error=1
+                return render_template('index.html',error_display_email="block",
+                        error_email="Error: Full Name is required")
+            else:
+                email = final_touch(email)
+                if(email.isspace()):
+                    flag_error=1
+                    return render_template('index.html',error_display_email="block",
+                            error_email="Error: Full Name can't start with a SPACE")
+            
+            if(not password): 
+                flag_error=1
+                return render_template('registration.html',error_display_password="block",
+                        error_password="Error: Password is required")
+            else:
+                password = final_touch(password)
+                if(len(password)<8):
+                    flag_error=1
+                    return render_template('index.html',error_display_password="block",
+                        error_password="Error: Password must be 8 characters long")
+                else:
+                    if(not repeatpw):
+                        flag_error=1
+                        return render_template('index.html',error_display_password="block",
+                        error_password="Error: Password doesn't match")
+                    else:
+                        repeatpw = final_touch(repeatpw)
+                        if(password == repeatpw):
+                            encrpt_pw=password(password)
+                        else:
+                            flag_error=1
+                            return render_template('index.html',error_display_lastname="block",
+                            error_password="Error: Password doesn't match")
+            
+            if(flag_error==0):
+                error_display_fullname=error_display_email=error_display_password="none"
+                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                cursor.execute('SELECT email from patient')
+                emailid=list(cursor.fetchall())
+                cursor.close()
+                print(emailid)
+                print(type(emailid))
+
+                if(len(emailid)>0):
+                    for j in emailid:
+                        if j.get('email')==email:
+                            return render_template('registration.html',error="Error : Already a registered email id ") 
+                        else: 
+                            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                            cursor.execute('INSERT INTO login VALUES (Null,%s, % s, % s)',(fullname, email, password))
+                            mysql.connection.commit()
+                            msg='You have successfully registered !'
+            
+                else:
+                    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                    cursor.execute('INSERT INTO login VALUES (Null,%s, % s, % s)',(fullname, email, password))
+                    mysql.connection.commit()
+                    msg='You have successfully registered !'
+
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT full_name from login WHERE email=%s',[email])
+        full_name= cursor.fetchone()
+        making_global_patient(full_name.get('full_name'))
+        return render_template('home.html',full_name.get('full_name'))
 
 @app.route('/search',methods=['GET', 'POST'])
 def search():
